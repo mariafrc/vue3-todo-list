@@ -1,0 +1,24 @@
+{
+  "name": "todo-list-vite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.16",
+    "vue-router": "^3.5.2",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^7.20.0",
+    "prettier": "2.4.1",
+    "sass": "^1.43.3",
+    "vite": "^2.6.4"
+  }
+}
