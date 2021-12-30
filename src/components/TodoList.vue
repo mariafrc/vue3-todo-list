@@ -21,33 +21,16 @@
 import TodoInput from "./TodoInput.vue";
 import TodoItem from "./TodoItem.vue";
 
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
+
+import { useTodoList } from "../composables/useTodoList";
 
 export default {
   components: { TodoInput, TodoItem },
   setup() {
     const store = useStore();
-    const filter = ref("all");
-
-    console.log({ store });
-
-    function setFilter(value) {
-      filter.value = value;
-    }
-
-    const todos = computed(function () {
-      switch (filter.value) {
-        case "active":
-          return store.getters["todos/active"];
-
-        case "completed":
-          return store.getters["todos/completed"];
-
-        default:
-          return store.state.todos.all;
-      }
-    });
+    const { setFilter, todos } = useTodoList();
 
     const taskLeft = computed(function () {
       return store.getters["todos/active"].length;
