@@ -40,7 +40,6 @@ export default {
 .todo-input {
   background: var(--todo-bg-color);
   padding: 1rem;
-  margin-bottom: 1rem;
   border-radius: 0.3rem;
 }
 </style>

@@ -58,14 +58,16 @@ export default {
   transform: translate(-50%, -50%);
   width: 40vw;
   height: 80vh;
-  // background: var(--todo-bg-color);
   display: flex;
   flex-direction: column;
   .list-container {
     flex-grow: 1;
-    padding-top: 2rem;
     overflow: auto;
     background: var(--todo-bg-color);
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
   }
   .footer {
     background: var(--todo-bg-color);
