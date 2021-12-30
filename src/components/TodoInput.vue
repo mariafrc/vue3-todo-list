@@ -1,5 +1,15 @@
 <template>
-  <input v-model="inputModel" type="text" name="todo" @keyup.enter="onAdd" />
+  <div class="todo-input">
+    <q-input
+      outlined
+      clearable
+      v-model="inputModel"
+      name="todo"
+      @keyup.enter="onAdd"
+      placeholder="New todo"
+      bg-color="grey-1"
+    />
+  </div>
 </template>
 
 <script>
@@ -27,11 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input {
-  width: 100%;
-  /* margin: 1rem; */
-  padding: 0.3rem;
-  /* border-radius: 0.3rem; */
-  box-sizing: border-box;
+.todo-input {
+  background: var(--todo-bg-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
 }
 </style>
