@@ -1,7 +1,35 @@
-# Vue 3 + Vite
+# Vue 3 ToDo list
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a simple ToDo list made with Vue 3 (composition API) and Vuex 4
 
-## Recommended IDE Setup
+## Installation
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+Just clone this repo and install packages with  `npm` or `yarn`
+
+```bash
+$ npm install
+```
+
+## Run the app
+
+You can run in development mode using:
+
+```bash
+$ npm run dev
+```
+
+Or build with:
+
+```bash
+$ npm run build
+```
+
+And after use:
+
+```bash
+$ npm start
+```
+
+## App screen
+
+![](./screen.png)
