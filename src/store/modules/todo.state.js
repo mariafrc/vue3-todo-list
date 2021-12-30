@@ -24,12 +24,15 @@ const mutations = {
       completed: false,
     });
   },
-  delete(state, taskId) {
-    state.all = state.all.filter((task) => task.id !== taskId);
-  },
   toggleStatus(state, taskId) {
     const selectedTask = state.all.find((task => task.id === taskId));
     selectedTask.completed = !selectedTask.completed;
+  },
+  delete(state, taskId) {
+    state.all = state.all.filter((task) => task.id !== taskId);
+  },
+  clearCompleted(state) {
+    state.all = state.all.filter((task) => task.completed === false)
   }
 };
 

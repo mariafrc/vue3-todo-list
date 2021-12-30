@@ -12,7 +12,7 @@
         <button @click="setFilter('completed')">Completed</button>
       </div>
 
-      <button>Clear completed</button>
+      <button @click="clearCompleted">Clear completed</button>
     </div>
   </div>
 </template>
@@ -53,10 +53,15 @@ export default {
       return store.getters["todos/active"].length;
     });
 
+    function clearCompleted() {
+      store.commit("todos/clearCompleted");
+    }
+
     return {
       todos,
       taskLeft,
       setFilter,
+      clearCompleted,
     };
   },
 };
