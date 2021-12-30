@@ -10,9 +10,6 @@ const getters = {};
 const actions = {};
 
 const mutations = {
-  setTodos(state, todos) {
-    state.all = todos;
-  },
   create(state, name) {
     state.all.push({
       id: uuidv4(),
@@ -20,12 +17,16 @@ const mutations = {
       completed: false,
     });
   },
-  delete(state, id) {
-    state.all = state.all.filter((todo) => todo.id !== id);
+  delete(state, taskId) {
+    state.all = state.all.filter((task) => task.id !== taskId);
   },
+  toggleStatus(state, taskId) {
+    const selectedTask = state.all.find((task => task.id === taskId));
+    selectedTask.completed = !selectedTask.completed;
+  }
 };
 
-export default {
+export const todos = {
   namespaced: true,
   state,
   getters,

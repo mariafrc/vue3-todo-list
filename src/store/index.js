@@ -1,6 +1,6 @@
 import VuexPersistence from 'vuex-persist'
 import { createStore, createLogger } from "vuex";
-import todos from "./modules/todo.state";
+import { todos } from "./modules/todo.state";
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage

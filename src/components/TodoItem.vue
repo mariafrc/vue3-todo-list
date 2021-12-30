@@ -1,11 +1,17 @@
 <template>
   <div class="todo-item">
-    <span>{{ task.name }}</span>
+    <div>
+      <q-checkbox v-model="checkboxModel" />
+      <span :class="{ checked: checkboxModel }">
+        {{ task.name }}
+      </span>
+    </div>
     <button @click="onDelete">delete</button>
   </div>
 </template>
 
 <script>
+import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -15,11 +21,20 @@ export default {
   setup(props) {
     const store = useStore();
 
+    const checkboxModel = computed({
+      get() {
+        return props.task.completed;
+      },
+      set(value) {
+        store.commit("todos/toggleStatus", props.task.id);
+      },
+    });
+
     function onDelete() {
       store.commit("todos/delete", props.task.id);
     }
 
-    return { onDelete };
+    return { onDelete, checkboxModel };
   },
 };
 </script>
@@ -34,5 +49,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .checked {
+    text-decoration: line-through;
+  }
 }
 </style>
