@@ -7,9 +7,14 @@
     <div class="footer">
       <span>{{ taskLeft }} left</span>
       <div class="filter-buttons">
-        <button @click="setFilter('all')">All</button>
-        <button @click="setFilter('active')">Active</button>
-        <button @click="setFilter('completed')">Completed</button>
+        <button
+          v-for="filterType in filterTypes"
+          :key="filterType"
+          :class="{ active: filter === filterType }"
+          @click="setFilter(filterType)"
+        >
+          {{ filterType }}
+        </button>
       </div>
 
       <button @click="clearCompleted">Clear completed</button>
@@ -30,7 +35,7 @@ export default {
   components: { TodoInput, TodoItem },
   setup() {
     const store = useStore();
-    const { setFilter, todos } = useTodoList();
+    const { setFilter, todos, filter } = useTodoList();
 
     const taskLeft = computed(function () {
       return store.getters["todos/active"].length;
@@ -42,7 +47,9 @@ export default {
 
     return {
       todos,
+      filter,
       taskLeft,
+      filterTypes: ["All", "Active", "Completed"],
       setFilter,
       clearCompleted,
     };
@@ -74,9 +81,20 @@ export default {
     display: flex;
     padding: 1rem;
     align-items: center;
+    color: var(--text-secondary);
+    button {
+      background: none;
+      border: none;
+      color: inherit;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
     .filter-buttons {
       margin-left: 3rem;
       flex-grow: 1;
+      button.active {
+        color: #3bd1f2;
+      }
     }
   }
 }

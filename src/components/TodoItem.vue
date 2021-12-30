@@ -53,6 +53,7 @@ export default {
   }
   .checked {
     text-decoration: line-through;
+    color: var(--text-secondary);
   }
   .icon {
     cursor: pointer;

@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 
 export function useTodoList() {
   const store = useStore();
-  const filter = ref("all");
+  const filter = ref("All");
 
   function setFilter(value) {
     filter.value = value;
@@ -11,10 +11,10 @@ export function useTodoList() {
 
   const todos = computed(function () {
     switch (filter.value) {
-      case "active":
+      case "Active":
         return store.getters["todos/active"];
 
-      case "completed":
+      case "Completed":
         return store.getters["todos/completed"];
 
       default:
@@ -24,6 +24,7 @@ export function useTodoList() {
 
   return {
     todos,
+    filter,
     setFilter,
   }
 }
