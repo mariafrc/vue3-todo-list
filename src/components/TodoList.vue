@@ -30,19 +30,28 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 import { useTodoList } from "../composables/useTodoList";
+import { useQuasar } from "quasar";
 
 export default {
   components: { TodoInput, TodoItem },
   setup() {
     const store = useStore();
     const { setFilter, todos, filter } = useTodoList();
+    const $q = useQuasar();
 
     const taskLeft = computed(function () {
       return store.getters["todos/active"].length;
     });
 
     function clearCompleted() {
-      store.commit("todos/clearCompleted");
+      $q.dialog({
+        title: "Confirm",
+        message: "Would you like to clear completed tasks",
+        cancel: true,
+        persistent: true,
+      }).onOk(() => {
+        store.commit("todos/clearCompleted");
+      });
     }
 
     return {
