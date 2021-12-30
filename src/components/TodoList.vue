@@ -4,25 +4,60 @@
     <div class="list-container">
       <TodoItem v-for="todo in todos" :key="todo.id" :task="todo" />
     </div>
+    <div class="footer">
+      <span>{{ taskLeft }} left</span>
+      <div class="filter-buttons">
+        <button @click="setFilter('all')">All</button>
+        <button @click="setFilter('active')">Active</button>
+        <button @click="setFilter('completed')">Completed</button>
+      </div>
+
+      <button>Clear completed</button>
+    </div>
   </div>
 </template>
 
 <script>
 import TodoInput from "./TodoInput.vue";
 import TodoItem from "./TodoItem.vue";
+
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
 
 export default {
   components: { TodoInput, TodoItem },
   setup() {
     const store = useStore();
+    const filter = ref("all");
+
+    console.log({ store });
+
+    function setFilter(value) {
+      filter.value = value;
+    }
 
     const todos = computed(function () {
-      return store.state.todos.all;
+      switch (filter.value) {
+        case "active":
+          return store.getters["todos/active"];
+
+        case "completed":
+          return store.getters["todos/completed"];
+
+        default:
+          return store.state.todos.all;
+      }
     });
 
-    return { todos };
+    const taskLeft = computed(function () {
+      return store.getters["todos/active"].length;
+    });
+
+    return {
+      todos,
+      taskLeft,
+      setFilter,
+    };
   },
 };
 </script>
@@ -36,9 +71,21 @@ export default {
   width: 40vw;
   height: 80vh;
   background: var(--todo-bg-color);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   .list-container {
-    margin-top: 2rem;
+    flex-grow: 1;
+    padding-top: 2rem;
+    overflow: auto;
+  }
+  .footer {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    .filter-buttons {
+      margin-left: 3rem;
+      flex-grow: 1;
+    }
   }
 }
 </style>

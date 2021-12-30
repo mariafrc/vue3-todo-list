@@ -5,7 +5,14 @@ const state = () => ({
   all: [],
 });
 
-const getters = {};
+const getters = {
+  active(state) {
+    return state.all.filter((task) => task.completed === false)
+  },
+  completed(state) {
+    return state.all.filter((task) => task.completed === true)
+  }
+};
 
 const actions = {};
 
