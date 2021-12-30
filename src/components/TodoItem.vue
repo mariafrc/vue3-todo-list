@@ -1,13 +1,14 @@
 <template>
   <div class="todo-item">
-    <div>
-      <q-checkbox v-model="checkboxModel" />
+    <div class="item-text">
+      <q-checkbox v-model="checkboxModel" class="checkbox" />
       <span :class="{ checked: checkboxModel }">
         {{ task.name }}
       </span>
     </div>
-    <button @click="onDelete">delete</button>
+    <q-icon class="icon" @click="onDelete" name="close" />
   </div>
+  <q-separator />
 </template>
 
 <script>
@@ -41,16 +42,21 @@ export default {
 
 <style lang="scss" scoped>
 .todo-item {
-  padding: 1rem;
+  padding: 0.5rem;
   color: #fff;
   margin: 0.3rem;
-  border-radius: 0.3rem;
-  background: #3c3958;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .checkbox {
+    margin-right: 1rem;
+  }
   .checked {
     text-decoration: line-through;
+  }
+  .icon {
+    cursor: pointer;
+    font-size: 1.5rem;
   }
 }
 </style>
